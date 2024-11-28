@@ -4,7 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CartModal from "./CartModal";
 
-const Header = ({ query, setQuery, handleSearch, cart, setCart}) => {
+const Header = ({ query, setQuery, handleSearch, cart, setCart }) => {
   const [cartModalOpen, setCartModalOpen] = useState(false);
 
   const handleOpenCartModal = () => {
@@ -67,9 +67,9 @@ const Header = ({ query, setQuery, handleSearch, cart, setCart}) => {
           ),
         }}
       />
-      <IconButton sx={{ ml: "auto" }} onClick={handleOpenCartModal}>
+      <IconButton sx={{ marginLeft: 'auto' }} onClick={handleOpenCartModal}>
         <Badge badgeContent={cart.length} color="primary">
-          <ShoppingCartIcon sx={{ color: "#bb86fc" }} />
+          <ShoppingCartIcon sx={{ color: "#bb86fc", ml: 2 }} />
         </Badge>
       </IconButton>
 
