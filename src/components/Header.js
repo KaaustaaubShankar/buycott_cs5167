@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography, TextField, InputAdornment, IconButton, Badge } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import CartModal from "./CartModal";
 
 const Header = ({ query, setQuery, handleSearch, cart }) => {
+  const [cartModalOpen, setCartModalOpen] = useState(false);
+
+  const handleOpenCartModal = () => {
+    setCartModalOpen(true);
+  };
+
+  const handleCloseCartModal = () => {
+    setCartModalOpen(false);
+  };
+
   return (
     <Box
       sx={{
@@ -56,11 +67,13 @@ const Header = ({ query, setQuery, handleSearch, cart }) => {
           ),
         }}
       />
-      <IconButton sx={{ ml: "auto" }}>
+      <IconButton sx={{ ml: "auto" }} onClick={handleOpenCartModal}>
         <Badge badgeContent={cart.length} color="primary">
           <ShoppingCartIcon sx={{ color: "#bb86fc" }} />
         </Badge>
       </IconButton>
+
+      <CartModal open={cartModalOpen} handleClose={handleCloseCartModal} cart={cart} />
     </Box>
   );
 };

@@ -110,9 +110,9 @@ const Cards = ({ query, cart, setCart }) => {
     card.name.toLowerCase().includes(query.toLowerCase())
   );
 
-  const handleAddToCart = (product, platform) => {
-    setCart([...cart, { product, platform }]);
-    console.log(cart);
+  const handleAddToCart = (card, platform) => {
+    const selectedPlatform = card.platforms.find(p => p.name === platform.name);
+    setCart([...cart, { product: card.name, platform: selectedPlatform.name, price: selectedPlatform.price }]);
   };
 
   const handleOpenModal = (pros, cons) => {
@@ -194,7 +194,7 @@ const Cards = ({ query, cart, setCart }) => {
                         backgroundColor: "#bb86fc",
                       },
                     }}
-                    onClick={() => handleAddToCart(card.name, platform.name)}
+                    onClick={() => handleAddToCart(card, platform)}
                   >
                     <span style={{ marginRight: '8px' }}>{platform.name}</span>
                     <span style={{ marginRight: '8px' }}>{platform.price}</span>
