@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Box } from "@mui/material";
+import Header from "./components/Header";
+import LandingPage from "./components/LandingPage";
+import ResultsPage from "./components/ResultsPage";
 
-function App() {
+const App = () => {
+  const [view, setView] = useState("search"); // Tracks current view ("search" or "results")
+  const [query, setQuery] = useState("");
+  const [cart, setCart] = useState([]);
+
+  const handleSearch = () => {
+    if (query.trim() !== "") {
+      setView("results");
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box sx={{ minHeight: "100vh", backgroundColor: "#121212", color: "#fff", overflowY: "auto" }}>
+      {view === "results" && (
+        <Header query={query} setQuery={setQuery} handleSearch={handleSearch} cart={cart} />
+      )}
+      {view === "search" && (
+        <LandingPage
+          query={query}
+          setQuery={setQuery}
+          handleSearch={handleSearch}
+        />
+      )}
+      {view === "results" && (
+        <ResultsPage query={query} cart={cart} setCart={setCart} />
+      )}
+    </Box>
   );
-}
+};
 
 export default App;
