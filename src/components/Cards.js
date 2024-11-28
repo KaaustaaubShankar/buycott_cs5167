@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Box, Typography, Button, Rating, IconButton } from "@mui/material";
+import { Grid, Box, Typography, Button, Rating, IconButton, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import InfoIcon from "@mui/icons-material/Info";
@@ -9,6 +9,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
   const [openModal, setOpenModal] = useState(false);
   const [currentPros, setCurrentPros] = useState([]);
   const [currentCons, setCurrentCons] = useState([]);
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const cardData = [
     {
@@ -120,6 +121,13 @@ const Cards = ({ query, cart, setCart, filters }) => {
     return matchesQuery && matchesEthics;
   });
 
+  // Sort filtered card data based on the selected sort order
+  const sortedCardData = filteredCardData.sort((a, b) => {
+    const priceA = parseFloat(a.platforms[0].price.replace(/[^0-9.-]+/g, "")); // Extract numeric value from price
+    const priceB = parseFloat(b.platforms[0].price.replace(/[^0-9.-]+/g, ""));
+    return sortOrder === "asc" ? priceA - priceB : priceB - priceA; // Ascending or descending
+  });
+
   const handleAddToCart = (card, platform) => {
     const selectedPlatform = card.platforms.find(p => p.name === platform.name);
     setCart([...cart, { product: card.name, platform: selectedPlatform.name, price: selectedPlatform.price }]);
@@ -137,8 +145,23 @@ const Cards = ({ query, cart, setCart, filters }) => {
 
   return (
     <>
-      <Grid container spacing={2} sx={{ mt: 4 }}>
-        {filteredCardData.map((card) => (
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
+        <Typography variant="h6" sx={{ color: "#fff" }}>Products</Typography>
+        <FormControl variant="outlined" size="small" sx={{ minWidth: 120 }}>
+          <Select
+            labelId="sort-label"
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+            sx={{ color: "#fff", '& .MuiSelect-icon': { color: '#fff' }, '& .MuiOutlinedInput-notchedOutline': { borderColor: '#fff' } }}
+          >
+            <MenuItem value="asc">Price: Low to High</MenuItem>
+            <MenuItem value="desc">Price: High to Low</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+
+      <Grid container spacing={2} sx={{ mt: 2 }}>
+        {sortedCardData.map((card) => (
           <Grid item xs={12} sm={6} md={4} key={card.id}>
             <Box
               sx={{
