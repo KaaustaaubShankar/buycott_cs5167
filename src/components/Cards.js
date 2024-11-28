@@ -46,7 +46,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
       name: "Wireless Earbuds",
       rating: 4.7,
       score: 95,
-      ethics: ["Animal Welfare", "Environmental Impact"],
+      ethics: ["Animal Welfare", "Environmental Impact", "Labor Rights"],
       platforms: [
         { name: "Amazon", price: "$89.99" },
         { name: "Best Buy", price: "$92.99" },
