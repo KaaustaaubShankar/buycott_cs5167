@@ -21,12 +21,12 @@ const LandingPage = ({ query, setQuery, handleSearch }) => {
           background: "linear-gradient(135deg, #fff 0%, #bb86fc 75%)", // Gradient transition made quicker by changing 100% to 50%
           backgroundClip: "text",
           textFillColor: "transparent",
-          mb: 4,
+          mb: 2,
         }}
       >
         Buycott
       </Typography>
-      <SearchBar query={query} setQuery={setQuery} handleSearch={handleSearch} hideTitle={true} />
+      <SearchBar query={query} setQuery={setQuery} handleSearch={handleSearch} hideTitle={true} isLandingPage={true} />
     </Box>
   );
 };

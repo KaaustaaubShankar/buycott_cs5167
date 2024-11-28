@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography, TextField, InputAdornment, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
-const Header = ({ query, setQuery, handleSearch, hideTitle }) => {
+const Header = ({ query, setQuery, handleSearch, hideTitle, isLandingPage }) => {
   return (
     <Box
       sx={{
@@ -46,6 +46,7 @@ const Header = ({ query, setQuery, handleSearch, hideTitle }) => {
               borderColor: "#bb86fc",
             },
           },
+          ...(isLandingPage ? { width: '50vw' } : {}),
         }}
         InputProps={{
           endAdornment: (
