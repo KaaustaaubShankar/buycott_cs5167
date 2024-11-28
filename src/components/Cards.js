@@ -5,7 +5,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import InfoIcon from "@mui/icons-material/Info";
 import InfoModal from "./InfoModal";
 
-const Cards = ({ query, cart, setCart }) => {
+const Cards = ({ query, cart, setCart, filters }) => {
   const [openModal, setOpenModal] = useState(false);
   const [currentPros, setCurrentPros] = useState([]);
   const [currentCons, setCurrentCons] = useState([]);
@@ -17,6 +17,7 @@ const Cards = ({ query, cart, setCart }) => {
       name: "Eco-Friendly Water Bottle",
       rating: 4.5,
       score: 89,
+      ethics: ["Environmental Impact", "Labor Rights"],
       platforms: [
         { name: "Amazon", price: "$19.99" },
         { name: "eBay", price: "$21.49" },
@@ -30,6 +31,7 @@ const Cards = ({ query, cart, setCart }) => {
       name: "Smartphone Stand",
       rating: 4.2,
       score: 75,
+      ethics: ["Corporate Governance", "Labor Rights"],
       platforms: [
         { name: "Walmart", price: "$17.99" },
         { name: "Target", price: "$20.00" },
@@ -43,6 +45,7 @@ const Cards = ({ query, cart, setCart }) => {
       name: "Wireless Earbuds",
       rating: 4.7,
       score: 95,
+      ethics: ["Animal Welfare", "Environmental Impact"],
       platforms: [
         { name: "Amazon", price: "$89.99" },
         { name: "Best Buy", price: "$92.99" },
@@ -57,6 +60,7 @@ const Cards = ({ query, cart, setCart }) => {
       name: "Organic Cotton T-Shirt",
       rating: 4.3,
       score: 82,
+      ethics: ["Human Rights", "Labor Rights"],
       platforms: [
         { name: "Amazon", price: "$22.99" },
         { name: "Etsy", price: "$25.50" },
@@ -70,6 +74,7 @@ const Cards = ({ query, cart, setCart }) => {
       name: "Portable Power Bank",
       rating: 4.0,
       score: 70,
+      ethics: ["Environmental Impact", "Health & Safety"],
       platforms: [
         { name: "Amazon", price: "$39.99" },
         { name: "Best Buy", price: "$42.99" },
@@ -83,6 +88,7 @@ const Cards = ({ query, cart, setCart }) => {
       name: "Fast Fashion Hoodie",
       rating: 3.8,
       score: 60,
+      ethics: ["Labor Rights", "Health & Safety"],
       platforms: [
         { name: "Amazon", price: "$29.99" },
         { name: "Walmart", price: "$32.00" },
@@ -96,6 +102,7 @@ const Cards = ({ query, cart, setCart }) => {
       name: "Battery-Powered Lawn Mower",
       rating: 3.5,
       score: 65,
+      ethics: ["Environmental Impact", "Animal Welfare"],
       platforms: [
         { name: "Ace", price: "$179.99" },
         { name: "Lowe's", price: "$189.99" },
@@ -105,10 +112,13 @@ const Cards = ({ query, cart, setCart }) => {
     }
   ];
 
-  // Filter card data based on the query
-  const filteredCardData = cardData.filter(card =>
-    card.name.toLowerCase().includes(query.toLowerCase())
-  );
+  // Filter card data based on the query and selected filters
+  const filteredCardData = cardData.filter(card => {
+    const matchesQuery = card.name.toLowerCase().includes(query.toLowerCase());
+    const matchesEthics = filters && filters.ethics && (filters.ethics.length === 0 || filters.ethics.some(ethic => !card.ethics.includes(ethic)));
+
+    return matchesQuery && matchesEthics;
+  });
 
   const handleAddToCart = (card, platform) => {
     const selectedPlatform = card.platforms.find(p => p.name === platform.name);
