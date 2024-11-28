@@ -15,8 +15,14 @@ const LandingPage = ({ query, setQuery, handleSearch }) => {
       }}
     >
       <Typography
-        variant="h4"
-        sx={{ fontWeight: "bold", color: "#bb86fc", mb: 4 }}
+        variant="h2"
+        sx={{
+          fontWeight: "bold",
+          background: "linear-gradient(135deg, #fff 0%, #bb86fc 75%)", // Gradient transition made quicker by changing 100% to 50%
+          backgroundClip: "text",
+          textFillColor: "transparent",
+          mb: 4,
+        }}
       >
         Buycott
       </Typography>

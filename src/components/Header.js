@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Box, Typography, TextField, InputAdornment, IconButton, Badge } from "@mui/material";
+import { Box, Typography, TextField, InputAdornment, IconButton, Badge, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CartModal from "./CartModal";
 
-const Header = ({ query, setQuery, handleSearch, cart, setCart }) => {
+const Header = ({ query, setQuery, handleSearch, cart, setCart, setView }) => {
   const [cartModalOpen, setCartModalOpen] = useState(false);
 
   const handleOpenCartModal = () => {
@@ -13,6 +13,10 @@ const Header = ({ query, setQuery, handleSearch, cart, setCart }) => {
 
   const handleCloseCartModal = () => {
     setCartModalOpen(false);
+  };
+
+  const handleTitleClick = () => {
+    setView("search");
   };
 
   return (
@@ -28,12 +32,20 @@ const Header = ({ query, setQuery, handleSearch, cart, setCart }) => {
         zIndex: 10,
       }}
     >
-      <Typography
-        variant="h5"
-        sx={{ fontWeight: "bold", color: "#bb86fc", mr: 2 }}
-      >
-        Buycott
-      </Typography>
+      <Button onClick={handleTitleClick} sx={{ textTransform: 'none' }}>
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: "bold",
+            background: "linear-gradient(135deg, #fff 0%, #bb86fc 75%)",
+            backgroundClip: "text",
+            textFillColor: "transparent",
+            mr: 2,
+          }}
+        >
+          Buycott
+        </Typography>
+      </Button>
       <TextField
         variant="outlined"
         placeholder="Search..."
