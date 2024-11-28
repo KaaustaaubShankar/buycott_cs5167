@@ -20,7 +20,7 @@ const App = () => {
   return (
     <Box sx={{ minHeight: "100vh", backgroundColor: "#121212", color: "#fff", overflowY: "auto" }}>
       {view === "results" && (
-        <Header query={query} setQuery={setQuery} handleSearch={handleSearch} cart={cart} />
+        <Header query={query} setQuery={setQuery} handleSearch={handleSearch} cart={cart} setCart={setCart} />
       )}
       {view === "search" && (
         <LandingPage

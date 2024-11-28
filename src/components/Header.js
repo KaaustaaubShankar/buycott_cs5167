@@ -4,7 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CartModal from "./CartModal";
 
-const Header = ({ query, setQuery, handleSearch, cart }) => {
+const Header = ({ query, setQuery, handleSearch, cart, setCart}) => {
   const [cartModalOpen, setCartModalOpen] = useState(false);
 
   const handleOpenCartModal = () => {
@@ -73,7 +73,7 @@ const Header = ({ query, setQuery, handleSearch, cart }) => {
         </Badge>
       </IconButton>
 
-      <CartModal open={cartModalOpen} handleClose={handleCloseCartModal} cart={cart} />
+      <CartModal open={cartModalOpen} handleClose={handleCloseCartModal} cart={cart} setCart={setCart} />
     </Box>
   );
 };

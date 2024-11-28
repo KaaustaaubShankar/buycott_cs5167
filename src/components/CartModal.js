@@ -14,7 +14,7 @@ const style = {
   color: '#fff',
 };
 
-const CartModal = ({ open, handleClose, cart }) => {
+const CartModal = ({ open, handleClose, cart, setCart }) => {
   // Group items by platform and calculate subtotal
   const groupedCart = cart.reduce((acc, item) => {
     const { platform, product, price } = item; // Assuming price is included in the item
@@ -28,6 +28,11 @@ const CartModal = ({ open, handleClose, cart }) => {
 
   // Calculate grand total
   const grandTotal = Object.values(groupedCart).reduce((total, platform) => total + platform.subtotal, 0);
+
+  // Function to handle item deletion
+  const handleDeleteItem = (productToDelete, platform) => {
+    setCart(cart.filter(item => !(item.product === productToDelete && item.platform === platform)));
+  };
 
   return (
     <Modal
@@ -46,14 +51,25 @@ const CartModal = ({ open, handleClose, cart }) => {
               <Typography variant="h6">{platform}</Typography>
               <ul>
                 {groupedCart[platform].items.map((item, index) => (
-                  <li key={index}>
-                    {item.product} - {item.price}
+                  <li key={index} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span>{item.product} - {item.price}</span>
+                    <Button 
+                      variant="outlined" 
+                      color="error" 
+                      onClick={() => handleDeleteItem(item.product, platform)}
+                      sx={{ ml: 2 }}
+                    >
+                      Delete
+                    </Button>
                   </li>
                 ))}
               </ul>
               <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
                 Subtotal: ${groupedCart[platform].subtotal.toFixed(2)}
               </Typography>
+              <Button variant="contained" sx={{ mt: 1, backgroundColor: '#bb86fc', color: '#fff' }}>
+                Send to Cart
+              </Button>
             </Box>
           ))}
         </Box>
