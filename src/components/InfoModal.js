@@ -12,6 +12,7 @@ const style = {
   boxShadow: 24,
   p: 4,
   color: '#fff',
+  borderRadius: '8px'
 };
 
 const InfoModal = ({ open, handleClose, pros, cons }) => {

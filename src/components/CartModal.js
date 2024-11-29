@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Box, Typography, Button } from "@mui/material";
 
 const style = {
@@ -12,9 +12,12 @@ const style = {
   boxShadow: 24,
   p: 4,
   color: '#fff',
+  borderRadius: '8px',
 };
 
 const CartModal = ({ open, handleClose, cart, setCart }) => {
+  const [acknowledgmentVisible, setAcknowledgmentVisible] = useState(false);
+
   // Group items by platform and calculate subtotal
   const groupedCart = cart.reduce((acc, item) => {
     const { platform, product, price } = item; // Assuming price is included in the item
@@ -34,6 +37,11 @@ const CartModal = ({ open, handleClose, cart, setCart }) => {
     setCart(cart.filter(item => !(item.product === productToDelete && item.platform === platform)));
   };
 
+  const handleSendToCart = () => {
+    setAcknowledgmentVisible(true);
+    setTimeout(() => setAcknowledgmentVisible(false), 2000);
+  };
+
   return (
     <Modal
       open={open}
@@ -42,13 +50,23 @@ const CartModal = ({ open, handleClose, cart, setCart }) => {
       aria-describedby="cart-modal-description"
     >
       <Box sx={style}>
-        <Typography id="cart-modal-title" variant="h6" component="h2">
+        {acknowledgmentVisible && (
+          <Typography variant="body1" sx={{ color: 'green', position: 'absolute', top: 10, right: 10 }}>
+            Item sent to cart!
+          </Typography>
+        )}
+        <Typography 
+          id="cart-modal-title" 
+          variant="h6" 
+          component="h2" 
+          sx={{ fontWeight: 'bold', fontSize: '1.5rem', mb: 2 }}
+        >
           Your Cart
         </Typography>
         <Box sx={{ mt: 2 }}>
           {Object.keys(groupedCart).map((platform) => (
             <Box key={platform} sx={{ mb: 2 }}>
-              <Typography variant="h6">{platform}</Typography>
+              <Typography variant="h6" sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>{platform}</Typography>
               <ul>
                 {groupedCart[platform].items.map((item, index) => (
                   <li key={index} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -67,7 +85,11 @@ const CartModal = ({ open, handleClose, cart, setCart }) => {
               <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
                 Subtotal: ${groupedCart[platform].subtotal.toFixed(2)}
               </Typography>
-              <Button variant="contained" sx={{ mt: 1, backgroundColor: '#bb86fc', color: '#fff' }}>
+              <Button 
+                variant="contained" 
+                sx={{ mt: 1, backgroundColor: '#bb86fc', color: '#fff' }}
+                onClick={handleSendToCart}
+              >
                 Send to Cart
               </Button>
             </Box>
