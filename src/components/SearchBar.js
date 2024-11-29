@@ -11,7 +11,7 @@ const Header = ({ query, setQuery, handleSearch, hideTitle, isLandingPage }) => 
       let index = 0;
       let currentText = "";
       let isDeleting = false;
-      let delta = 300 - Math.random() * 100; // Random delta for typewriter effect
+      let delta = 200 - Math.random() * 100; // Random delta for typewriter effect
 
       const type = () => {
         const fullText = randomSearches[index];
