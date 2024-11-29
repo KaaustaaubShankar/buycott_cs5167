@@ -43,6 +43,9 @@ const LandingPage = ({ query, setQuery, handleSearch, cart, setCart, handleOpenC
       >
         Buycott
       </Typography>
+      <Typography variant="h5" sx={{ color: "text.secondary" }}>
+      Shop with purpose, Buycott for change.
+      </Typography>
       <SearchBar query={query} setQuery={setQuery} handleSearch={handleSearch} hideTitle={true} isLandingPage={true} />
     </Box>
   );
