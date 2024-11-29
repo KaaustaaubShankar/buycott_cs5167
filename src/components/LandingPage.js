@@ -13,7 +13,7 @@ const LandingPage = ({ query, setQuery, handleSearch, cart, setCart, handleOpenC
         justifyContent: "center",
         minHeight: "100vh",
         position: "relative",
-        gap: 3,
+        
       }}
     >
       <Box
@@ -25,7 +25,7 @@ const LandingPage = ({ query, setQuery, handleSearch, cart, setCart, handleOpenC
         }}
       >
         <IconButton onClick={handleOpenCartModal}>
-          <Badge badgeContent={cart.length} color="primary">
+          <Badge badgeContent={cart.length} color="</Badge>primary">
             <ShoppingCartIcon sx={{ color: "#bb86fc" }} />
           </Badge>
         </IconButton>
@@ -43,7 +43,7 @@ const LandingPage = ({ query, setQuery, handleSearch, cart, setCart, handleOpenC
       >
         Buycott
       </Typography>
-      <Typography variant="h5" sx={{ color: "text.secondary" }}>
+      <Typography variant="h6" sx={{ color: "#FFFFF" }}>
       Shop with purpose, Buycott for change.
       </Typography>
       <SearchBar query={query} setQuery={setQuery} handleSearch={handleSearch} hideTitle={true} isLandingPage={true} />
