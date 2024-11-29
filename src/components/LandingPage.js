@@ -1,8 +1,9 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, IconButton, Badge } from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchBar from "./SearchBar";
 
-const LandingPage = ({ query, setQuery, handleSearch }) => {
+const LandingPage = ({ query, setQuery, handleSearch, cart, setCart, handleOpenCartModal }) => {
   return (
     <Box
       sx={{
@@ -11,14 +12,30 @@ const LandingPage = ({ query, setQuery, handleSearch }) => {
         alignItems: "center",
         justifyContent: "center",
         minHeight: "100vh",
+        position: "relative",
         gap: 3,
       }}
     >
+      <Box
+        sx={{
+          position: "absolute",
+          top: 24,
+          right: 16,
+          zIndex: 10,
+        }}
+      >
+        <IconButton onClick={handleOpenCartModal}>
+          <Badge badgeContent={cart.length} color="primary">
+            <ShoppingCartIcon sx={{ color: "#bb86fc" }} />
+          </Badge>
+        </IconButton>
+      </Box>
+
       <Typography
         variant="h2"
         sx={{
           fontWeight: "bold",
-          background: "linear-gradient(135deg, #fff 0%, #bb86fc 75%)", // Gradient transition made quicker by changing 100% to 50%
+          background: "linear-gradient(135deg, #fff 0%, #bb86fc 75%)",
           backgroundClip: "text",
           textFillColor: "transparent",
           mb: 2,
