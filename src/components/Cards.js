@@ -14,7 +14,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
   const cardData = [
     {
       id: 1,
-      image: "https://via.placeholder.com/150?text=Product+1",
+      image: "ecofriendly_water_bottle.png",
       name: "Eco-Friendly Water Bottle",
       rating: 4.5,
       score: 89,
@@ -28,7 +28,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
     },
     {
       id: 2,
-      image: "https://via.placeholder.com/150?text=Product+2",
+      image: "smartphone_stand.png",
       name: "Smartphone Stand",
       rating: 4.2,
       score: 75,
@@ -42,7 +42,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
     },
     {
       id: 3,
-      image: "https://via.placeholder.com/150?text=Product+3",
+      image: "wireless_earbuds.png",
       name: "Wireless Earbuds",
       rating: 4.7,
       score: 95,
@@ -57,7 +57,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
     },
     {
       id: 4,
-      image: "https://via.placeholder.com/150?text=Product+4",
+      image: "cotton_tshirt.png",
       name: "Organic Cotton T-Shirt",
       rating: 4.3,
       score: 82,
@@ -71,7 +71,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
     },
     {
       id: 5,
-      image: "https://via.placeholder.com/150?text=Product+5",
+      image: "powerbank.png",
       name: "Portable Power Bank",
       rating: 4.0,
       score: 70,
@@ -85,7 +85,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
     },
     {
       id: 6,
-      image: "https://via.placeholder.com/150?text=Product+6",
+      image: "hoodie.png",
       name: "Fast Fashion Hoodie",
       rating: 3.8,
       score: 60,
@@ -99,7 +99,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
     },
     {
       id: 7,
-      image: "https://via.placeholder.com/150?text=Product+7",
+      image: "lawn_mower.png",
       name: "Battery-Powered Lawn Mower",
       rating: 3.5,
       score: 65,
