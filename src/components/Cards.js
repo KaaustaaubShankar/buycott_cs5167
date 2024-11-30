@@ -9,6 +9,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
   const [openModal, setOpenModal] = useState(false);
   const [currentPros, setCurrentPros] = useState([]);
   const [currentCons, setCurrentCons] = useState([]);
+  const [currentEthics, setCurrentEthics] = useState([]);
   const [sortOrder, setSortOrder] = useState("asc");
 
   const cardData = [
@@ -133,9 +134,10 @@ const Cards = ({ query, cart, setCart, filters }) => {
     setCart([...cart, { product: card.name, platform: selectedPlatform.name, price: selectedPlatform.price }]);
   };
 
-  const handleOpenModal = (pros, cons) => {
+  const handleOpenModal = (pros, cons, ethics) => {
     setCurrentPros(pros);
     setCurrentCons(cons);
+    setCurrentEthics(ethics);
     setOpenModal(true);
   };
 
@@ -201,7 +203,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
                   sx={{ fontWeight: "bold", color: "#bb86fc" }}
                 >
                   Score: {card.score}
-                  <IconButton onClick={() => handleOpenModal(card.pros, card.cons)} sx={{ ml: 1 }}>
+                  <IconButton onClick={() => handleOpenModal(card.pros, card.cons, card.ethics)} sx={{ ml: 1 }}>
                     <InfoIcon sx={{ color: "#bb86fc" }} />
                   </IconButton>
                 </Typography>
@@ -241,7 +243,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
       </Grid>
 
       {/* Modal for Pros and Cons */}
-      <InfoModal open={openModal} handleClose={handleCloseModal} pros={currentPros} cons={currentCons} />
+      <InfoModal open={openModal} handleClose={handleCloseModal} pros={currentPros} cons={currentCons} ethics={currentEthics} />
     </>
   );
 };

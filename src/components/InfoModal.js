@@ -15,7 +15,7 @@ const style = {
   borderRadius: '8px',
 };
 
-const InfoModal = ({ open, handleClose, pros, cons, articles = testArticles }) => {
+const InfoModal = ({ open, handleClose, pros, cons, articles = testArticles, ethics }) => {
   return (
     <Modal
       open={open}
@@ -40,6 +40,12 @@ const InfoModal = ({ open, handleClose, pros, cons, articles = testArticles }) =
               <ul>
                 {cons.map((con, index) => (
                   <li key={index}>{con}</li>
+                ))}
+              </ul>
+              <strong>Ethical Considerations:</strong>
+              <ul>
+                {ethics.map((ethic, index) => (
+                  <li key={index}>{ethic}</li>
                 ))}
               </ul>
             </Typography>
