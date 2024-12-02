@@ -24,8 +24,8 @@ const Cards = ({ query, cart, setCart, filters }) => {
         { name: "Amazon", price: "$19.99" },
         { name: "eBay", price: "$21.49" },
       ],
-      pros: ["Made from recycled materials", "Produced using ethical labor practices"],
-      cons: ["Single-use plastic packaging", "Unethical labor practices"],
+      pros: ["Made from recycled materials"],
+      cons: ["Produced using non-ethical labor practices"],
     },
     {
       id: 2,
@@ -39,7 +39,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
         { name: "Target", price: "$20.00" },
       ],
       pros: ["Affordable price point", "Locally manufactured"],
-      cons: ["Unsafe working conditions", "Non-recyclable materials"],
+      cons: [ "Non-recyclable materials"],
     },
     {
       id: 3,
@@ -47,14 +47,14 @@ const Cards = ({ query, cart, setCart, filters }) => {
       name: "Wireless Earbuds",
       rating: 4.7,
       score: 95,
-      ethics: ["Animal Welfare", "Environmental Impact", "Labor Rights"],
+      ethics: ["Animal Welfare","Labor Rights"],
       platforms: [
         { name: "Amazon", price: "$89.99" },
         { name: "Best Buy", price: "$92.99" },
         { name: "Target", price: "$85.00" },
       ],
       pros: ["Sustainable packaging", "Long-lasting product lifespan"],
-      cons: ["Child labor history", "Plastic waste", "Not recyclable"],
+      cons: ["Plastic waste", "Not recyclable"],
     },
     {
       id: 4,
@@ -62,13 +62,13 @@ const Cards = ({ query, cart, setCart, filters }) => {
       name: "Organic Cotton T-Shirt",
       rating: 4.3,
       score: 82,
-      ethics: ["Human Rights", "Labor Rights"],
+      ethics: ["Human Rights", "Environmental Impact"],
       platforms: [
         { name: "Amazon", price: "$22.99" },
         { name: "Etsy", price: "$25.50" },
       ],
-      pros: ["100% organic cotton", "Fair Trade certified"],
-      cons: ["Pesticides used in cotton farming", "Lack of transparency in labor sourcing"],
+      pros: ["100% organic cotton", "Open about Labor"],
+      cons: [],
     },
     {
       id: 5,
@@ -82,7 +82,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
         { name: "Best Buy", price: "$42.99" },
       ],
       pros: ["Energy-efficient", "Made with recyclable materials"],
-      cons: ["Deforestation-linked company", "Non-recyclable batteries"],
+      cons: ["Deforestation-linked company",],
     },
     {
       id: 6,
@@ -90,7 +90,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
       name: "Fast Fashion Hoodie",
       rating: 3.8,
       score: 60,
-      ethics: ["Labor Rights", "Health & Safety"],
+      ethics: [],
       platforms: [
         { name: "Amazon", price: "$29.99" },
         { name: "Walmart", price: "$32.00" },
@@ -109,15 +109,15 @@ const Cards = ({ query, cart, setCart, filters }) => {
         { name: "Ace", price: "$179.99" },
         { name: "Lowe's", price: "$189.99" },
       ],
-      pros: ["Environmentally friendly alternative to gas-powered mowers", "Quiet operation"],
-      cons: ["Harmful battery disposal", "Non-durable parts lead to frequent replacements"],
+      pros: ["Environmentally friendly alternative to gas-powered mowers"],
+      cons: ["Bad Labor History"],
     }
   ];
 
   // Filter card data based on the query and selected filters
   const filteredCardData = cardData.filter(card => {
     const matchesQuery = card.name.toLowerCase().includes(query.toLowerCase());
-    const matchesEthics = filters && filters.ethics && (filters.ethics.length === 0 || filters.ethics.some(ethic => !card.ethics.includes(ethic)));
+    const matchesEthics = filters && filters.ethics && (filters.ethics.length === 0 || filters.ethics.some(ethic => card.ethics.includes(ethic)));
 
     return matchesQuery && matchesEthics;
   });
