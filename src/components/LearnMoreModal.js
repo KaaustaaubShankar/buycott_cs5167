@@ -6,6 +6,7 @@ const LearnMoreModal = ({ open, handleClose }) => {
         <Modal open={open} onClose={handleClose}>
             <Box sx={{
                 bgcolor: '#1e1e1e',
+                border: '2px solid #333',
                 boxShadow: 24,
                 p: 2,
                 borderRadius: 2,
@@ -23,7 +24,7 @@ const LearnMoreModal = ({ open, handleClose }) => {
                 </Typography>
                 <Button 
                     onClick={handleClose} 
-                    sx={{ mt: 2, backgroundColor: "#333", color: "#fff", "&:hover": { backgroundColor: "#bb86fc" } }} 
+                    sx={{ mt: 2, backgroundColor: "#bb86fc", color: "#fff", "&:hover": { backgroundColor: "#333" } }}
                     variant="contained"
                 >
                     Close
