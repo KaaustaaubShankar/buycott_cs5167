@@ -103,16 +103,17 @@ const LandingPage = ({ query, setQuery, handleSearch, cart, setCart, handleOpenC
           justifyContent: "center",
         }}
       >
-        <Button variant="contained" sx={{ backgroundColor: "#bb86fc" }} onClick={handleOpenCategoriesModal}>
+        {/*        <Button variant="contained" sx={{ backgroundColor: "#bb86fc" }} onClick={handleOpenCategoriesModal}>
           Explore Categories
-        </Button>
+        </Button> */}
+
         <Button variant="outlined" sx={{ borderColor: "#bb86fc", color: "#bb86fc" }} onClick={handleOpenLearnMoreModal}>
           Learn More
         </Button>
       </Box>
 
       {/* Modals */}
-      <CategoriesModal open={openCategoriesModal} handleClose={handleCloseCategoriesModal} />
+      {/*<CategoriesModal open={openCategoriesModal} handleClose={handleCloseCategoriesModal} /> */}
       <LearnMoreModal open={openLearnMoreModal} handleClose={handleCloseLearnMoreModal} />
     </Box>
   );
