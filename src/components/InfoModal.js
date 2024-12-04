@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Box, Typography, Button, Divider } from "@mui/material";
 
 const style = {
@@ -36,6 +36,34 @@ const twoColumnStyle = {
   gridTemplateColumns: '1fr 1fr', // Two columns of equal width
   gap: 1, // Reduced spacing between columns
   mb: 2, // Reduced margin bottom between rows
+};
+
+const AlternativesCarousel = ({ alternatives }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const itemsToShow = 3; // Number of items to show at once
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % alternatives.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + alternatives.length) % alternatives.length);
+  };
+
+  return (
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      <Button onClick={prevSlide} disabled={currentIndex === 0}>Prev</Button>
+      <Box sx={{ display: 'flex', overflow: 'hidden', width: '100%' }}>
+        {alternatives.slice(currentIndex, currentIndex + itemsToShow).map((alternative, index) => (
+          <Box key={index} sx={{ textAlign: 'center', mx: 1 }}>
+            <img src={alternative.image} alt={alternative.title} style={{ width: '100px', height: '100px', borderRadius: '8px' }} />
+            <Typography variant="body2" sx={{ color: '#fff' }}>{alternative.title}</Typography>
+          </Box>
+        ))}
+      </Box>
+      <Button onClick={nextSlide} disabled={currentIndex + itemsToShow >= alternatives.length}>Next</Button>
+    </Box>
+  );
 };
 
 const InfoModal = ({ open, handleClose, pros = [], cons = [], articles = testArticles, ethics = [], alternatives = [] }) => {
@@ -85,14 +113,10 @@ const InfoModal = ({ open, handleClose, pros = [], cons = [], articles = testArt
               </ul>
             </Box>
 
-            {/* Alternatives */}
+            {/* Alternatives Section with Custom Carousel */}
             <Box sx={{ mb: 2 }}>
               <Typography variant="h6" sx={sectionTitleStyle}>Alternatives</Typography>
-              <ul style={listStyle}>
-                {alternatives.map((alternative, index) => (
-                  <li key={index}>{alternative}</li>
-                ))}
-              </ul>
+              <AlternativesCarousel alternatives={alternatives} />
             </Box>
           </Box>
 

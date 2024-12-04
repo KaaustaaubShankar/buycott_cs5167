@@ -16,7 +16,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
   const cardData = [
     {
       id: 2,
-      image: "plastic_bottle.png",
+      image: "plastic_water_bottle.png",
       name: "Plastic Water Bottle",
       rating: 3.8,
       score: 70,
@@ -27,7 +27,10 @@ const Cards = ({ query, cart, setCart, filters }) => {
       ],
       pros: ["Inexpensive", "Lightweight"],
       cons: ["Single-use plastic", "Non-recyclable"],
-      alternativeProductIds: ["Eco-Friendly Water Bottle", "Glass Water Bottle"], // Alternative titles
+      alternativeProductIds: [
+        { title: "Eco-Friendly Water Bottle", image: "ecofriendly_water_bottle.png" },
+        { title: "Glass Water Bottle", image: "glass_bottle.png" },
+      ],
     },
     {
       id: 3,
@@ -42,7 +45,10 @@ const Cards = ({ query, cart, setCart, filters }) => {
       ],
       pros: ["Affordable", "Compact"],
       cons: ["Made with non-recyclable plastic", "Labor practices not disclosed"],
-      alternativeProductIds: ["Wireless Earbuds", "Noise-Cancelling Headphones"], // Alternative titles
+      alternativeProductIds: [
+        { title: "Wireless Earbuds", image: "wireless_earbuds.png" },
+        { title: "Noise-Cancelling Headphones", image: "noise_cancelling_headphones.png" },
+      ],
     },
     {
       id: 4,
@@ -57,11 +63,14 @@ const Cards = ({ query, cart, setCart, filters }) => {
       ],
       pros: ["100% organic cotton", "Transparent labor practices"],
       cons: ["Higher cost", "Limited sizes"],
-      alternativeProductIds: ["Basic Shirt", "Recycled Polyester Jacket"], // Alternative titles
+      alternativeProductIds: [
+        { title: "Basic Shirt", image: "basic_shirt.png" },
+        { title: "Recycled Polyester Jacket", image: "recycled_polyester_jacket.png" },
+      ],
     },
     {
       id: 5,
-      image: "eco_friendly_bottle.png",
+      image: "ecofriendly_water_bottle.png",
       name: "Eco-Friendly Water Bottle",
       rating: 4.7,
       score: 92,
@@ -72,7 +81,10 @@ const Cards = ({ query, cart, setCart, filters }) => {
       ],
       pros: ["Made from recycled materials", "Reusable"],
       cons: ["Plastic cap", "Limited color options"],
-      alternativeProductIds: ["Plastic Water Bottle", "Stainless Steel Water Bottle"], // Alternative titles
+      alternativeProductIds: [
+        { title: "Plastic Water Bottle", image: "plastic_water_bottle.png" },
+        { title: "Stainless Steel Water Bottle", image: "stainless_steel_water_bottle.png" },
+      ],
     },
     {
       id: 6,
@@ -87,7 +99,10 @@ const Cards = ({ query, cart, setCart, filters }) => {
       ],
       pros: ["Made from recycled materials", "Portable"],
       cons: ["Non-recyclable components", "Can be bulky"],
-      alternativeProductIds: ["Solar Charger", "Eco-Friendly Water Bottle"], // Alternative titles
+      alternativeProductIds: [
+        { title: "Solar Charger", image: "solar_charger.png" },
+        { title: "Eco-Friendly Water Bottle", image: "ecofriendly_water_bottle.png" },
+      ],
     },
     {
       id: 7,
@@ -102,7 +117,10 @@ const Cards = ({ query, cart, setCart, filters }) => {
       ],
       pros: ["Made from recycled polyester", "Durable"],
       cons: ["Higher price", "Not as stylish as other jackets"],
-      alternativeProductIds: ["Organic Cotton T-Shirt", "Waterproof Outdoor Jacket"], // Alternative titles
+      alternativeProductIds: [
+        { title: "Organic Cotton T-Shirt", image: "organic_cotton_shirt.png" },
+        { title: "Waterproof Outdoor Jacket", image: "waterproof_outdoor_jacket.png" },
+      ],
     },
     {
       id: 8,
@@ -117,7 +135,10 @@ const Cards = ({ query, cart, setCart, filters }) => {
       ],
       pros: ["Affordable", "Ergonomic design"],
       cons: ["Made from plastic", "Not adjustable"],
-      alternativeProductIds: ["Wooden Laptop Stand", "Standing Desk Converter"], // Alternative titles
+      alternativeProductIds: [
+        { title: "Wooden Laptop Stand", image: "wooden_laptop_stand.png" },
+        { title: "Standing Desk Converter", image: "standing_desk_converter.png" },
+      ],
     },
     {
       id: 9,
@@ -132,11 +153,14 @@ const Cards = ({ query, cart, setCart, filters }) => {
       ],
       pros: ["Superior sound quality", "Comfortable"],
       cons: ["Expensive", "Plastic parts"],
-      alternativeProductIds: ["Wireless Earbuds", "Traditional Earphones"], // Alternative titles
+      alternativeProductIds: [
+        { title: "Wireless Earbuds", image: "wireless_earbuds.png" },
+        { title: "Traditional Earphones", image: "traditional_earphones.png" },
+      ],
     },
     {
       id: 10,
-      image: "stainless_steel_bottle.png",
+      image: "stainless_steel_water_bottle.png",
       name: "Stainless Steel Water Bottle",
       rating: 4.6,
       score: 89,
@@ -147,7 +171,10 @@ const Cards = ({ query, cart, setCart, filters }) => {
       ],
       pros: ["Insulated", "Durable"],
       cons: ["Higher cost", "Heavier than plastic bottles"],
-      alternativeProductIds: ["Eco-Friendly Water Bottle", "Glass Water Bottle"], // Alternative titles
+      alternativeProductIds: [
+        { title: "Eco-Friendly Water Bottle", image: "ecofriendly_water_bottle.png" },
+        { title: "Glass Water Bottle", image: "glass_bottle.png" },
+      ],
     },
     {
       id: 11,
@@ -162,7 +189,10 @@ const Cards = ({ query, cart, setCart, filters }) => {
       ],
       pros: ["Eco-friendly", "Portable"],
       cons: ["Slow charging", "Expensive"],
-      alternativeProductIds: ["Portable Power Bank", "Battery-Powered Lantern"], // Alternative titles
+      alternativeProductIds: [
+        { title: "Portable Power Bank", image: "portable_power_bank.png" },
+        { title: "Battery-Powered Lantern", image: "battery_powered_lantern.png" },
+      ],
     },
     {
       id: 12,
@@ -177,7 +207,10 @@ const Cards = ({ query, cart, setCart, filters }) => {
       ],
       pros: ["Eco-friendly", "Aesthetic design"],
       cons: ["Higher cost", "Limited adjustability"],
-      alternativeProductIds: ["Laptop Stand", "Standing Desk Converter"], // Alternative titles
+      alternativeProductIds: [
+        { title: "Laptop Stand", image: "laptop_stand.png" },
+        { title: "Standing Desk Converter", image: "standing_desk_converter.png" },
+      ],
     }
   ];
   
