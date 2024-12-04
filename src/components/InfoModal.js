@@ -15,7 +15,7 @@ const style = {
   borderRadius: '8px',
 };
 
-const InfoModal = ({ open, handleClose, pros, cons, articles = testArticles, ethics }) => {
+const InfoModal = ({ open, handleClose, pros = [], cons = [], articles = testArticles, ethics = [], alternatives = [] }) => {
   return (
     <Modal
       open={open}
@@ -46,6 +46,12 @@ const InfoModal = ({ open, handleClose, pros, cons, articles = testArticles, eth
               <ul>
                 {ethics.map((ethic, index) => (
                   <li key={index}>{ethic}</li>
+                ))}
+              </ul>
+              <strong>Alternatives:</strong>
+              <ul>
+                {alternatives.map((alternative, index) => (
+                  <li key={index}>{alternative}</li>
                 ))}
               </ul>
             </Typography>

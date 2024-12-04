@@ -10,109 +10,177 @@ const Cards = ({ query, cart, setCart, filters }) => {
   const [currentPros, setCurrentPros] = useState([]);
   const [currentCons, setCurrentCons] = useState([]);
   const [currentEthics, setCurrentEthics] = useState([]);
+  const [currentAlternatives, setCurrentAlternatives] = useState([]);
   const [sortOrder, setSortOrder] = useState("asc");
 
   const cardData = [
     {
-      id: 1,
-      image: "ecofriendly_water_bottle.png",
-      name: "Eco-Friendly Water Bottle",
+      id: 2,
+      image: "plastic_bottle.png",
+      name: "Plastic Water Bottle",
+      rating: 3.8,
+      score: 70,
+      ethics: ["Environmental Impact", "Waste"],
+      platforms: [
+        { name: "Amazon", price: "$12.99" },
+        { name: "Target", price: "$14.00" },
+      ],
+      pros: ["Inexpensive", "Lightweight"],
+      cons: ["Single-use plastic", "Non-recyclable"],
+      alternativeProductIds: ["Eco-Friendly Water Bottle", "Glass Water Bottle"], // Alternative titles
+    },
+    {
+      id: 3,
+      image: "traditional_earphones.png",
+      name: "Traditional Earphones",
+      rating: 4.0,
+      score: 74,
+      ethics: ["Labor Rights", "Plastic Waste"],
+      platforms: [
+        { name: "Best Buy", price: "$19.99" },
+        { name: "Target", price: "$18.49" },
+      ],
+      pros: ["Affordable", "Compact"],
+      cons: ["Made with non-recyclable plastic", "Labor practices not disclosed"],
+      alternativeProductIds: ["Wireless Earbuds", "Noise-Cancelling Headphones"], // Alternative titles
+    },
+    {
+      id: 4,
+      image: "organic_cotton_shirt.png",
+      name: "Organic Cotton T-Shirt",
       rating: 4.5,
-      score: 89,
-      ethics: ["Environmental Impact", "Labor Rights"],
+      score: 88,
+      ethics: ["Environmental Impact", "Human Rights"],
+      platforms: [
+        { name: "Amazon", price: "$25.99" },
+        { name: "Etsy", price: "$29.50" },
+      ],
+      pros: ["100% organic cotton", "Transparent labor practices"],
+      cons: ["Higher cost", "Limited sizes"],
+      alternativeProductIds: ["Basic Shirt", "Recycled Polyester Jacket"], // Alternative titles
+    },
+    {
+      id: 5,
+      image: "eco_friendly_bottle.png",
+      name: "Eco-Friendly Water Bottle",
+      rating: 4.7,
+      score: 92,
+      ethics: ["Environmental Impact", "Sustainability"],
       platforms: [
         { name: "Amazon", price: "$19.99" },
         { name: "eBay", price: "$21.49" },
       ],
-      pros: ["Made from recycled materials"],
-      cons: ["Produced using non-ethical labor practices"],
-    },
-    {
-      id: 2,
-      image: "smartphone_stand.png",
-      name: "Smartphone Stand",
-      rating: 4.2,
-      score: 75,
-      ethics: ["Corporate Governance", "Labor Rights"],
-      platforms: [
-        { name: "Walmart", price: "$17.99" },
-        { name: "Target", price: "$20.00" },
-      ],
-      pros: ["Affordable price point", "Locally manufactured"],
-      cons: [ "Non-recyclable materials"],
-    },
-    {
-      id: 3,
-      image: "wireless_earbuds.png",
-      name: "Wireless Earbuds",
-      rating: 4.7,
-      score: 95,
-      ethics: ["Animal Welfare","Labor Rights"],
-      platforms: [
-        { name: "Amazon", price: "$89.99" },
-        { name: "Best Buy", price: "$92.99" },
-        { name: "Target", price: "$85.00" },
-      ],
-      pros: ["Sustainable packaging", "Long-lasting product lifespan"],
-      cons: ["Plastic waste", "Not recyclable"],
-    },
-    {
-      id: 4,
-      image: "cotton_tshirt.png",
-      name: "Organic Cotton T-Shirt",
-      rating: 4.3,
-      score: 82,
-      ethics: ["Human Rights", "Environmental Impact"],
-      platforms: [
-        { name: "Amazon", price: "$22.99" },
-        { name: "Etsy", price: "$25.50" },
-      ],
-      pros: ["100% organic cotton", "Open about Labor"],
-      cons: [],
-    },
-    {
-      id: 5,
-      image: "powerbank.png",
-      name: "Portable Power Bank",
-      rating: 4.0,
-      score: 70,
-      ethics: ["Environmental Impact", "Health & Safety"],
-      platforms: [
-        { name: "Amazon", price: "$39.99" },
-        { name: "Best Buy", price: "$42.99" },
-      ],
-      pros: ["Energy-efficient", "Made with recyclable materials"],
-      cons: ["Deforestation-linked company",],
+      pros: ["Made from recycled materials", "Reusable"],
+      cons: ["Plastic cap", "Limited color options"],
+      alternativeProductIds: ["Plastic Water Bottle", "Stainless Steel Water Bottle"], // Alternative titles
     },
     {
       id: 6,
-      image: "hoodie.png",
-      name: "Fast Fashion Hoodie",
-      rating: 3.8,
-      score: 60,
-      ethics: [],
+      image: "portable_power_bank.png",
+      name: "Portable Power Bank",
+      rating: 4.3,
+      score: 80,
+      ethics: ["Sustainability", "Recycling"],
       platforms: [
-        { name: "Amazon", price: "$29.99" },
-        { name: "Walmart", price: "$32.00" },
+        { name: "Amazon", price: "$39.99" },
+        { name: "Best Buy", price: "$41.00" },
       ],
-      pros: ["Affordable", "Comfortable fit"],
-      cons: ["Sweatshop labor", "Textile waste", "Harmful environmental impact"],
+      pros: ["Made from recycled materials", "Portable"],
+      cons: ["Non-recyclable components", "Can be bulky"],
+      alternativeProductIds: ["Solar Charger", "Eco-Friendly Water Bottle"], // Alternative titles
     },
     {
       id: 7,
-      image: "lawn_mower.png",
-      name: "Battery-Powered Lawn Mower",
-      rating: 3.5,
-      score: 65,
-      ethics: ["Environmental Impact", "Animal Welfare"],
+      image: "recycled_polyester_jacket.png",
+      name: "Recycled Polyester Jacket",
+      rating: 4.4,
+      score: 85,
+      ethics: ["Environmental Impact", "Sustainability"],
       platforms: [
-        { name: "Ace", price: "$179.99" },
-        { name: "Lowe's", price: "$189.99" },
+        { name: "Patagonia", price: "$109.99" },
+        { name: "Etsy", price: "$115.00" },
       ],
-      pros: ["Environmentally friendly alternative to gas-powered mowers"],
-      cons: ["Bad Labor History"],
+      pros: ["Made from recycled polyester", "Durable"],
+      cons: ["Higher price", "Not as stylish as other jackets"],
+      alternativeProductIds: ["Organic Cotton T-Shirt", "Waterproof Outdoor Jacket"], // Alternative titles
+    },
+    {
+      id: 8,
+      image: "laptop_stand.png",
+      name: "Laptop Stand",
+      rating: 4.3,
+      score: 81,
+      ethics: ["Corporate Governance", "Workplace Welfare"],
+      platforms: [
+        { name: "Amazon", price: "$22.99" },
+        { name: "Walmart", price: "$25.00" },
+      ],
+      pros: ["Affordable", "Ergonomic design"],
+      cons: ["Made from plastic", "Not adjustable"],
+      alternativeProductIds: ["Wooden Laptop Stand", "Standing Desk Converter"], // Alternative titles
+    },
+    {
+      id: 9,
+      image: "noise_cancelling_headphones.png",
+      name: "Noise-Cancelling Headphones",
+      rating: 4.7,
+      score: 90,
+      ethics: ["Labor Rights", "Material Sourcing"],
+      platforms: [
+        { name: "Amazon", price: "$179.99" },
+        { name: "Best Buy", price: "$185.00" },
+      ],
+      pros: ["Superior sound quality", "Comfortable"],
+      cons: ["Expensive", "Plastic parts"],
+      alternativeProductIds: ["Wireless Earbuds", "Traditional Earphones"], // Alternative titles
+    },
+    {
+      id: 10,
+      image: "stainless_steel_bottle.png",
+      name: "Stainless Steel Water Bottle",
+      rating: 4.6,
+      score: 89,
+      ethics: ["Environmental Impact", "Reusability"],
+      platforms: [
+        { name: "Amazon", price: "$29.99" },
+        { name: "Target", price: "$27.00" },
+      ],
+      pros: ["Insulated", "Durable"],
+      cons: ["Higher cost", "Heavier than plastic bottles"],
+      alternativeProductIds: ["Eco-Friendly Water Bottle", "Glass Water Bottle"], // Alternative titles
+    },
+    {
+      id: 11,
+      image: "solar_charger.png",
+      name: "Solar Charger",
+      rating: 4.2,
+      score: 76,
+      ethics: ["Sustainability", "Renewable Energy"],
+      platforms: [
+        { name: "Amazon", price: "$49.99" },
+        { name: "Walmart", price: "$52.00" },
+      ],
+      pros: ["Eco-friendly", "Portable"],
+      cons: ["Slow charging", "Expensive"],
+      alternativeProductIds: ["Portable Power Bank", "Battery-Powered Lantern"], // Alternative titles
+    },
+    {
+      id: 12,
+      image: "wooden_laptop_stand.png",
+      name: "Wooden Laptop Stand",
+      rating: 4.5,
+      score: 83,
+      ethics: ["Sustainability", "Craftsmanship"],
+      platforms: [
+        { name: "Etsy", price: "$49.99" },
+        { name: "Amazon", price: "$47.00" },
+      ],
+      pros: ["Eco-friendly", "Aesthetic design"],
+      cons: ["Higher cost", "Limited adjustability"],
+      alternativeProductIds: ["Laptop Stand", "Standing Desk Converter"], // Alternative titles
     }
   ];
+  
 
   // Filter card data based on the query and selected filters
   const filteredCardData = cardData.filter(card => {
@@ -134,10 +202,11 @@ const Cards = ({ query, cart, setCart, filters }) => {
     setCart([...cart, { product: card.name, platform: selectedPlatform.name, price: selectedPlatform.price }]);
   };
 
-  const handleOpenModal = (pros, cons, ethics) => {
+  const handleOpenModal = (pros, cons, ethics, alternatives) => {
     setCurrentPros(pros);
     setCurrentCons(cons);
     setCurrentEthics(ethics);
+    setCurrentAlternatives(alternatives);
     setOpenModal(true);
   };
 
@@ -203,7 +272,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
                   sx={{ fontWeight: "bold", color: "#bb86fc" }}
                 >
                   Score: {card.score}
-                  <IconButton onClick={() => handleOpenModal(card.pros, card.cons, card.ethics)} sx={{ ml: 1 }}>
+                  <IconButton onClick={() => handleOpenModal(card.pros, card.cons, card.ethics, card.alternativeProductIds)} sx={{ ml: 1 }}>
                     <InfoIcon sx={{ color: "#bb86fc" }} />
                   </IconButton>
                 </Typography>
@@ -243,7 +312,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
       </Grid>
 
       {/* Modal for Pros and Cons */}
-      <InfoModal open={openModal} handleClose={handleCloseModal} pros={currentPros} cons={currentCons} ethics={currentEthics} />
+      <InfoModal open={openModal} handleClose={handleCloseModal} pros={currentPros} cons={currentCons} ethics={currentEthics} alternatives={currentAlternatives} />
     </>
   );
 };
