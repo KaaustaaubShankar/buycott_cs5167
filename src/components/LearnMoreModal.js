@@ -35,6 +35,11 @@ const LearnMoreModal = ({ open, handleClose }) => {
                     <li style={{ color: "#fff" }}>Corporate Governance: Transparent and accountable business practices.</li>
                     <li style={{ color: "#fff" }}>Human Rights: Respect for dignity and rights of all people.</li>
                     <li style={{ color: "#fff" }}>Health & Safety: Products that ensure safety and well-being.</li>
+                    <li style={{ color: "#fff" }}>Sustainability: Practices that promote environmental health.</li>
+                    <li style={{ color: "#fff" }}>Reusability: Products designed for repeated use.</li>
+                    <li style={{ color: "#fff" }}>Material Sourcing: Ethical sourcing of materials used in products.</li>
+                    <li style={{ color: "#fff" }}>Craftsmanship: Quality and skill in product creation.</li>
+                    <li style={{ color: "#fff" }}>Waste: Consideration of product lifecycle and waste reduction.</li>
                 </ul>
                 <Typography variant="h6" component="h2" sx={{ color: "#fff", mt: 3 }}>
                     The Technology Behind Buycott

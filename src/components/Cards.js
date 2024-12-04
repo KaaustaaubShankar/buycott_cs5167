@@ -29,7 +29,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
       cons: ["Single-use plastic", "Non-recyclable"],
       alternativeProductIds: [
         { title: "Eco-Friendly Water Bottle", image: "ecofriendly_water_bottle.png" },
-        { title: "Glass Water Bottle", image: "glass_bottle.png" },
+        { title: "Glass Water Bottle", image: "glass_water_bottle.png" },
       ],
     },
     {
@@ -52,7 +52,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
     },
     {
       id: 4,
-      image: "organic_cotton_shirt.png",
+      image: "organic_cotton_tshirt.png",
       name: "Organic Cotton T-Shirt",
       rating: 4.5,
       score: 88,
@@ -173,7 +173,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
       cons: ["Higher cost", "Heavier than plastic bottles"],
       alternativeProductIds: [
         { title: "Eco-Friendly Water Bottle", image: "ecofriendly_water_bottle.png" },
-        { title: "Glass Water Bottle", image: "glass_bottle.png" },
+        { title: "Glass Water Bottle", image: "glass_water_bottle.png" },
       ],
     },
     {
@@ -191,7 +191,6 @@ const Cards = ({ query, cart, setCart, filters }) => {
       cons: ["Slow charging", "Expensive"],
       alternativeProductIds: [
         { title: "Portable Power Bank", image: "portable_power_bank.png" },
-        { title: "Battery-Powered Lantern", image: "battery_powered_lantern.png" },
       ],
     },
     {
@@ -211,8 +210,44 @@ const Cards = ({ query, cart, setCart, filters }) => {
         { title: "Laptop Stand", image: "laptop_stand.png" },
         { title: "Standing Desk Converter", image: "standing_desk_converter.png" },
       ],
-    }
-  ];
+    },
+    {
+      id: 13,
+      image: "glass_water_bottle.png",
+      name: "Glass Water Bottle",
+      rating: 4.5,
+      score: 87,
+      ethics: ["Environmental Impact", "Reusability"],
+      platforms: [
+        { name: "Amazon", price: "$24.99" },
+        { name: "Walmart", price: "$22.00" },
+      ],
+      pros: ["Reusable", "Non-toxic material", "Stylish design"],
+      cons: ["Fragile", "Heavier than plastic or stainless steel"],
+      alternativeProductIds: [
+        { title: "Eco-Friendly Water Bottle", image: "ecofriendly_water_bottle.png" },
+        { title: "Stainless Steel Water Bottle", image: "stainless_steel_water_bottle.png" },
+      ],
+    },
+    {
+      id: 14,
+      image: "wireless_earbuds.png",
+      name: "Wireless Earbuds",
+      rating: 4.6,
+      score: 88,
+      ethics: ["Material Sourcing", "Labor Rights"],
+      platforms: [
+        { name: "Amazon", price: "$129.99" },
+        { name: "Best Buy", price: "$135.00" },
+      ],
+      pros: ["Convenient", "Portable", "Good sound quality"],
+      cons: ["Expensive", "Battery waste"],
+      alternativeProductIds: [
+        { title: "Noise-Cancelling Headphones", image: "noise_cancelling_headphones.png" },
+        { title: "Traditional Earphones", image: "traditional_earphones.png" },
+      ],
+    },
+  ];  
   
 
   // Filter card data based on the query and selected filters
@@ -249,14 +284,16 @@ const Cards = ({ query, cart, setCart, filters }) => {
 
   return (
     <>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-        <Typography variant="h6" sx={{ color: "#fff" }}>Products</Typography>
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 1 }}>
+        <Typography variant="h6" sx={{ color: "#fff" }}>
+          Products
+        </Typography>
         <FormControl variant="outlined" size="small" sx={{ minWidth: 120 }}>
           <Select
             labelId="sort-label"
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
-            sx={{ color: "#fff", '& .MuiSelect-icon': { color: '#fff' }, '& .MuiOutlinedInput-notchedOutline': { borderColor: '#fff' } }}
+            sx={{ color: "#fff", "& .MuiSelect-icon": { color: "#fff" }, "& .MuiOutlinedInput-notchedOutline": { borderColor: "#fff" } }}
           >
             <MenuItem value="asc">Price: Low to High</MenuItem>
             <MenuItem value="desc">Price: High to Low</MenuItem>
@@ -276,6 +313,8 @@ const Cards = ({ query, cart, setCart, filters }) => {
                 borderRadius: 2,
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
                 alignItems: "center",
+                width: "100%",
+                height: "220px", // Fixed height for uniformity
               }}
             >
               {/* Left Section */}
@@ -289,6 +328,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
                     height: "80px",
                     borderRadius: "8px",
                     mb: 2,
+                    objectFit: "contain", // Ensures proper scaling
                   }}
                 />
                 <Rating
@@ -296,16 +336,16 @@ const Cards = ({ query, cart, setCart, filters }) => {
                   precision={0.5}
                   readOnly
                   sx={{ mb: 1 }}
-                  getLabelText={(value) => `${value} Star${value !== 1 ? 's' : ''}`}
-                  label
-                  emptyIcon={<StarIcon style={{ opacity: 1 }} fontSize="inherit" />}
+                  getLabelText={(value) => `${value} Star${value !== 1 ? "s" : ""}`}
                 />
-                <Typography
-                  variant="body2"
-                  sx={{ fontWeight: "bold", color: "#bb86fc" }}
-                >
+                <Typography variant="body2" sx={{ fontWeight: "bold", color: "#bb86fc" }}>
                   Score: {card.score}
-                  <IconButton onClick={() => handleOpenModal(card.pros, card.cons, card.ethics, card.alternativeProductIds)} sx={{ ml: 1 }}>
+                  <IconButton
+                    onClick={() =>
+                      handleOpenModal(card.pros, card.cons, card.ethics, card.alternativeProductIds)
+                    }
+                    sx={{ ml: 1 }}
+                  >
                     <InfoIcon sx={{ color: "#bb86fc" }} />
                   </IconButton>
                 </Typography>
@@ -333,8 +373,8 @@ const Cards = ({ query, cart, setCart, filters }) => {
                     }}
                     onClick={() => handleAddToCart(card, platform)}
                   >
-                    <span style={{ marginRight: '8px' }}>{platform.name}</span>
-                    <span style={{ marginRight: '8px' }}>{platform.price}</span>
+                    <span style={{ marginRight: "8px" }}>{platform.name}</span>
+                    <span style={{ marginRight: "8px" }}>{platform.price}</span>
                     <ShoppingCartIcon />
                   </Button>
                 ))}
@@ -345,7 +385,14 @@ const Cards = ({ query, cart, setCart, filters }) => {
       </Grid>
 
       {/* Modal for Pros and Cons */}
-      <InfoModal open={openModal} handleClose={handleCloseModal} pros={currentPros} cons={currentCons} ethics={currentEthics} alternatives={currentAlternatives} />
+      <InfoModal
+        open={openModal}
+        handleClose={handleCloseModal}
+        pros={currentPros}
+        cons={currentCons}
+        ethics={currentEthics}
+        alternatives={currentAlternatives}
+      />
     </>
   );
 };
