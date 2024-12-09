@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import { Modal, Box, Typography, Button } from "@mui/material";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
 
 const style = {
   position: 'absolute',
@@ -17,6 +23,9 @@ const style = {
 
 const CartModal = ({ open, handleClose, cart, setCart }) => {
   const [acknowledgmentVisible, setAcknowledgmentVisible] = useState(false);
+  const [notificationOpen, setNotificationOpen] = useState(false);
+  const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
 
   // Group items by platform and calculate subtotal
   const groupedCart = cart.reduce((acc, item) => {
@@ -34,7 +43,22 @@ const CartModal = ({ open, handleClose, cart, setCart }) => {
 
   // Function to handle item deletion
   const handleDeleteItem = (productToDelete, platform) => {
-    setCart(cart.filter(item => !(item.product === productToDelete && item.platform === platform)));
+    setItemToDelete({ productToDelete, platform });
+    setConfirmDeleteOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    if (itemToDelete) {
+      setCart(cart.filter(item => !(item.product === itemToDelete.productToDelete && item.platform === itemToDelete.platform)));
+      setNotificationOpen(true);
+      setConfirmDeleteOpen(false);
+      setItemToDelete(null);
+    }
+  };
+
+  const handleCloseConfirmation = () => {
+    setConfirmDeleteOpen(false);
+    setItemToDelete(null);
   };
 
   const handleSendToCart = () => {
@@ -101,6 +125,27 @@ const CartModal = ({ open, handleClose, cart, setCart }) => {
         <Button onClick={handleClose} variant="contained" sx={{ mt: 2, backgroundColor: '#bb86fc', color: '#fff' }}>
           Close
         </Button>
+
+        <Snackbar open={notificationOpen} autoHideDuration={3000} onClose={() => setNotificationOpen(false)}>
+          <Alert onClose={() => setNotificationOpen(false)} severity="warning" sx={{ width: '100%' }}>
+            Item removed from cart!
+          </Alert>
+        </Snackbar>
+
+        <Dialog open={confirmDeleteOpen} onClose={handleCloseConfirmation}>
+          <DialogTitle>Confirm Deletion</DialogTitle>
+          <DialogContent>
+            <Typography>Are you sure you want to delete this item from the cart?</Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseConfirmation} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={handleConfirmDelete} color="secondary">
+              Delete
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Box>
     </Modal>
   );
