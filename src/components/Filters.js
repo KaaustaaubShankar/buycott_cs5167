@@ -3,12 +3,16 @@ import { Box, Typography, Button, Checkbox, FormControlLabel, Accordion, Accordi
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const ethicsOptions = [
-  { label: "Human Rights", value: "Human Rights" },
   { label: "Environmental Impact", value: "Environmental Impact" },
-  { label: "Animal Welfare", value: "Animal Welfare" },
-  { label: "Corporate Governance", value: "Corporate Governance" },
+  { label: "Waste", value: "Waste" },
   { label: "Labor Rights", value: "Labor Rights" },
-  { label: "Health & Safety", value: "Health & Safety" },
+  { label: "Plastic Waste", value: "Plastic Waste" },
+  { label: "Sustainability", value: "Sustainability" },
+  { label: "Human Rights", value: "Human Rights" },
+  { label: "Material Sourcing", value: "Material Sourcing" },
+  { label: "Corporate Governance", value: "Corporate Governance" },
+  { label: "Workplace Welfare", value: "Workplace Welfare" },
+  { label: "Craftsmanship", value: "Craftsmanship" },
 ];
 
 const Filters = ({ setFilters }) => {
