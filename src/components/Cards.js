@@ -4,6 +4,8 @@ import StarIcon from "@mui/icons-material/Star";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import InfoIcon from "@mui/icons-material/Info";
 import InfoModal from "./InfoModal";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 const Cards = ({ query, cart, setCart, filters }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -12,6 +14,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
   const [currentEthics, setCurrentEthics] = useState([]);
   const [currentAlternatives, setCurrentAlternatives] = useState([]);
   const [sortOrder, setSortOrder] = useState("asc");
+  const [notificationOpen, setNotificationOpen] = useState(false);
 
   const cardData = [
     {
@@ -268,6 +271,7 @@ const Cards = ({ query, cart, setCart, filters }) => {
   const handleAddToCart = (card, platform) => {
     const selectedPlatform = card.platforms.find(p => p.name === platform.name);
     setCart([...cart, { product: card.name, platform: selectedPlatform.name, price: selectedPlatform.price }]);
+    setNotificationOpen(true);
   };
 
   const handleOpenModal = (pros, cons, ethics, alternatives) => {
@@ -280,6 +284,10 @@ const Cards = ({ query, cart, setCart, filters }) => {
 
   const handleCloseModal = () => {
     setOpenModal(false);
+  };
+
+  const handleCloseNotification = () => {
+    setNotificationOpen(false);
   };
 
   return (
@@ -393,6 +401,13 @@ const Cards = ({ query, cart, setCart, filters }) => {
         ethics={currentEthics}
         alternatives={currentAlternatives}
       />
+
+      {/* Snackbar for notification */}
+      <Snackbar open={notificationOpen} autoHideDuration={3000} onClose={handleCloseNotification}>
+        <Alert onClose={handleCloseNotification} severity="success" sx={{ width: '100%' }}>
+          Item added to cart!
+        </Alert>
+      </Snackbar>
     </>
   );
 };
