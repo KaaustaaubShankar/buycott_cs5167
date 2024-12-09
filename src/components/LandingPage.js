@@ -75,7 +75,7 @@ const LandingPage = ({ query, setQuery, handleSearch, cart, setCart, handleOpenC
           mb: 4,
         }}
       >
-        Shop with purpose, Buycott for change.
+        Shop Amazon, Ebay, and more with Buycott.
       </Typography>
 
       {/* Search Bar */}
