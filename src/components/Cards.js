@@ -257,8 +257,9 @@ const Cards = ({ query, cart, setCart, filters }) => {
   const filteredCardData = cardData.filter(card => {
     const matchesQuery = card.name.toLowerCase().includes(query.toLowerCase());
     const matchesEthics = filters && filters.ethics && (filters.ethics.length === 0 || filters.ethics.some(ethic => card.ethics.includes(ethic)));
+    const matchesScore = card.score >= (filters.minEthicsScore || 0); // Check against minimum ethics score
 
-    return matchesQuery && matchesEthics;
+    return matchesQuery && matchesEthics && matchesScore;
   });
 
   // Sort filtered card data based on the selected sort order

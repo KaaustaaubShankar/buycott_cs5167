@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Typography, Button, Checkbox, FormControlLabel, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
+import { Box, Typography, Button, Checkbox, FormControlLabel, Accordion, AccordionSummary, AccordionDetails, Slider } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const ethicsOptions = [
@@ -18,6 +18,7 @@ const ethicsOptions = [
 const Filters = ({ setFilters }) => {
   const [selectedEthics, setSelectedEthics] = useState([]);
   const [expanded, setExpanded] = useState(false);
+  const [minEthicsScore, setMinEthicsScore] = useState(0);
 
   const handleEthicsChange = (event) => {
     const value = event.target.value;
@@ -27,7 +28,7 @@ const Filters = ({ setFilters }) => {
   };
 
   const applyFilters = () => {
-    setFilters({ ethics: selectedEthics });
+    setFilters({ ethics: selectedEthics, minEthicsScore });
   };
 
   return (
@@ -57,8 +58,8 @@ const Filters = ({ setFilters }) => {
           aria-controls="panel1a-content"
           id="panel1a-header"
           sx={{
-            padding: 0,  // Remove padding for a clean look
-            color: "#fff", // Set the font color to white
+            padding: 0,
+            color: "#fff",
           }}
         >
           <Typography variant="subtitle1" sx={{ color: "#fff" }}>Ethical Considerations</Typography>
@@ -72,20 +73,33 @@ const Filters = ({ setFilters }) => {
                   value={ethic.value}
                   onChange={handleEthicsChange}
                   sx={{
-                    color: "#bb86fc", 
+                    color: "#bb86fc",
                     '&.Mui-checked': { color: '#bb86fc' },
                   }}
                 />
               }
-              label={<Typography sx={{ color: "#fff" }}>{ethic.label}</Typography>} // White text for label
+              label={<Typography sx={{ color: "#fff" }}>{ethic.label}</Typography>}
               sx={{
-                marginRight: 2, // Space between checkboxes
-                color: '#fff', // Ensure the label is white
+                marginRight: 2,
+                color: '#fff',
               }}
             />
           ))}
         </AccordionDetails>
       </Accordion>
+
+      <Typography sx={{ color: "#fff", mb: 1 }}>Minimum Ethics Score: {minEthicsScore}</Typography>
+      <Slider
+        value={minEthicsScore}
+        onChange={(e, newValue) => setMinEthicsScore(newValue)}
+        aria-labelledby="min-ethics-score-slider"
+        valueLabelDisplay="auto"
+        step={20}
+        marks
+        min={0}
+        max={100}
+        sx={{ color: "#bb86fc" }}
+      />
 
       <Button
         variant="contained"
